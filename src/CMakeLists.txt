@@ -111,6 +111,9 @@ endif()
 if(NOT QGC_AIRLINK_DISABLED)
     target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AirLinkModule)
 endif()
+if(QGC_ENABLE_DW3000)
+    target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE QGC::DW3000)
+endif()
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}
     PRIVATE
@@ -123,6 +126,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME}
         QGC_SETTINGS_VERSION=${QGC_SETTINGS_VERSION}
         $<$<NOT:$<BOOL:${QGC_STABLE_BUILD}>>:QGC_DAILY_BUILD>
         $<$<BOOL:${QGC_DISABLE_APM_MAVLINK}>:QGC_NO_ARDUPILOT_DIALECT>
+       $<$<BOOL:${QGC_ENABLE_DW3000}>:QGC_ENABLE_DW3000>
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")

@@ -76,8 +76,11 @@ else()
     set(ENV{CPM_SOURCE_CACHE} "${CMAKE_BINARY_DIR}/cpm_modules")
 endif()
 include(CPM)
+include(DW3000)
 
 include(Toolchain)
+
+qgc_setup_dw3000()
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>")
