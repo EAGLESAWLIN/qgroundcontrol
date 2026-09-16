@@ -30,7 +30,7 @@ If you want to understand the possibilities, the first step is to read through t
 DW3000 can be enabled as an optional dependency through CMake options:
 
 - `QGC_ENABLE_DW3000=ON`
-- `QGC_DW3000_GIT_REPOSITORY=<repo-url>`
-- `QGC_DW3000_GIT_TAG=<pinned-git-tag-or-commit>`
+- `QGC_DW3000_GIT_REPOSITORY=<git-repository-url>`
+- `QGC_DW3000_GIT_TAG=<pinned-git-ref>`
 
-When enabled, QGC fetches the configured DW3000 source during configure and links the `QGC::DW3000` interface target into the application target.
+`QGC_DW3000_GIT_REPOSITORY` must point to a Git repository, and `QGC_DW3000_GIT_TAG` should be set to a pinned tag or commit SHA for reproducible builds. When enabled, QGC fetches the configured DW3000 source during configure and links the `QGC::DW3000` interface target into the application target.
