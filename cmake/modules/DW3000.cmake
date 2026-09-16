@@ -18,8 +18,14 @@ function(qgc_setup_dw3000)
         GIT_TAG ${QGC_DW3000_GIT_TAG}
     )
 
+    if(NOT dw3000_ADDED OR NOT DEFINED dw3000_SOURCE_DIR OR NOT EXISTS "${dw3000_SOURCE_DIR}")
+        message(FATAL_ERROR "Failed to fetch/configure DW3000 from ${QGC_DW3000_GIT_REPOSITORY} at ${QGC_DW3000_GIT_TAG}")
+    endif()
+
     if(NOT TARGET QGC_DW3000)
         add_library(QGC_DW3000 INTERFACE)
+    endif()
+    if(NOT TARGET QGC::DW3000)
         add_library(QGC::DW3000 ALIAS QGC_DW3000)
     endif()
 
