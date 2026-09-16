@@ -6,6 +6,9 @@ function(qgc_setup_dw3000)
     if(NOT QGC_DW3000_GIT_REPOSITORY)
         message(FATAL_ERROR "QGC_ENABLE_DW3000 is ON but QGC_DW3000_GIT_REPOSITORY is empty")
     endif()
+    if(NOT QGC_DW3000_GIT_TAG)
+        message(FATAL_ERROR "QGC_ENABLE_DW3000 is ON but QGC_DW3000_GIT_TAG is empty")
+    endif()
 
     message(STATUS "Building DW3000")
 
@@ -26,10 +29,16 @@ function(qgc_setup_dw3000)
             ${dw3000_SOURCE_DIR}/include
     )
 
+    set(_dw3000_target_found OFF)
     foreach(_dw3000_target dw3000 DW3000 dwt)
         if(TARGET ${_dw3000_target})
             target_link_libraries(QGC_DW3000 INTERFACE ${_dw3000_target})
+            set(_dw3000_target_found ON)
             break()
         endif()
     endforeach()
+
+    if(NOT _dw3000_target_found)
+        message(FATAL_ERROR "DW3000 integration could not find a library target (tried: dw3000, DW3000, dwt)")
+    endif()
 endfunction()

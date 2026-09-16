@@ -31,6 +31,6 @@ DW3000 can be enabled as an optional dependency through CMake options:
 
 - `QGC_ENABLE_DW3000=ON`
 - `QGC_DW3000_GIT_REPOSITORY=<repo-url>`
-- `QGC_DW3000_GIT_TAG=<git-tag-or-branch>`
+- `QGC_DW3000_GIT_TAG=<pinned-git-tag-or-commit>`
 
 When enabled, QGC fetches the configured DW3000 source during configure and links the `QGC::DW3000` interface target into the application target.

@@ -29,8 +29,8 @@ option(QGC_ZEROCONF_ENABLED "Enable ZeroConf Compatibility" OFF)
 option(QGC_AIRLINK_DISABLED "Disable AIRLink" ON)
 option(QGC_NO_SERIAL_LINK "Disable Serial Links" OFF) # NOT IOS AND Qt6SerialPort_FOUND
 option(QGC_ENABLE_DW3000 "Enable DW3000 library integration" OFF)
-set(QGC_DW3000_GIT_REPOSITORY "https://github.com/br101/dw3000-decadriver-source.git" CACHE STRING "URL to DW3000 Git Repo")
-set(QGC_DW3000_GIT_TAG "master" CACHE STRING "Tag of DW3000 Git Repo")
+set(QGC_DW3000_GIT_REPOSITORY "" CACHE STRING "URL to DW3000 Git Repo")
+set(QGC_DW3000_GIT_TAG "" CACHE STRING "Pinned tag or commit of DW3000 Git Repo")
 
 # Video
 option(QGC_ENABLE_UVC "Enable UVC Devices" ON) # Qt6Multimedia_FOUND
