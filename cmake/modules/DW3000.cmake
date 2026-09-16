@@ -17,9 +17,6 @@ function(qgc_setup_dw3000)
         GIT_REPOSITORY ${QGC_DW3000_GIT_REPOSITORY}
         GIT_TAG ${QGC_DW3000_GIT_TAG}
     )
-    if(NOT dw3000_ADDED AND (NOT DEFINED dw3000_SOURCE_DIR OR NOT EXISTS "${dw3000_SOURCE_DIR}"))
-        message(FATAL_ERROR "Failed to fetch/configure DW3000 from ${QGC_DW3000_GIT_REPOSITORY} at ${QGC_DW3000_GIT_TAG}")
-    endif()
 
     set(_dw3000_target_name "")
     foreach(_dw3000_target dw3000 DW3000 dwt)
