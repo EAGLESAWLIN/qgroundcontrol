@@ -17,6 +17,9 @@ function(qgc_setup_dw3000)
         GIT_REPOSITORY ${QGC_DW3000_GIT_REPOSITORY}
         GIT_TAG ${QGC_DW3000_GIT_TAG}
     )
+    if(NOT dw3000_ADDED AND (NOT DEFINED dw3000_SOURCE_DIR OR NOT EXISTS "${dw3000_SOURCE_DIR}"))
+        message(FATAL_ERROR "Failed to fetch/configure DW3000 from ${QGC_DW3000_GIT_REPOSITORY} at ${QGC_DW3000_GIT_TAG}")
+    endif()
 
     set(_dw3000_target_name "")
     foreach(_dw3000_target dw3000 DW3000 dwt)
@@ -34,14 +37,6 @@ function(qgc_setup_dw3000)
         add_library(QGC_DW3000 INTERFACE)
     endif()
     target_link_libraries(QGC_DW3000 INTERFACE ${_dw3000_target_name})
-
-    if(DEFINED dw3000_SOURCE_DIR AND EXISTS "${dw3000_SOURCE_DIR}")
-        set(_dw3000_include_dirs "${dw3000_SOURCE_DIR}")
-        if(EXISTS "${dw3000_SOURCE_DIR}/include")
-            list(APPEND _dw3000_include_dirs "${dw3000_SOURCE_DIR}/include")
-        endif()
-        target_include_directories(QGC_DW3000 INTERFACE ${_dw3000_include_dirs})
-    endif()
 
     if(NOT TARGET QGC::DW3000)
         add_library(QGC::DW3000 ALIAS QGC_DW3000)
