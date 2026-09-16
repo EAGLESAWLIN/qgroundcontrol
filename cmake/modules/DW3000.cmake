@@ -32,8 +32,8 @@ function(qgc_setup_dw3000)
 
     if(NOT TARGET QGC_DW3000)
         add_library(QGC_DW3000 INTERFACE)
+        target_link_libraries(QGC_DW3000 INTERFACE ${_dw3000_target_name})
     endif()
-    target_link_libraries(QGC_DW3000 INTERFACE ${_dw3000_target_name})
 
     if(NOT TARGET QGC::DW3000)
         add_library(QGC::DW3000 ALIAS QGC_DW3000)
